@@ -29,7 +29,7 @@ function Slideshow () {
     // }, [index])
     return (
         <div>
-            <img className = "" src= {img1} alt ='img1'></img>
+            <img className = "max-w-6xl" src= {img1} alt ='img1'></img>
         </div>
     )
 }

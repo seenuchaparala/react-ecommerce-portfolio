@@ -1,7 +1,24 @@
 import React from "react";
+import {useState} from "react";
+import Slideshow from "../Slideshow/Slideshow";
+import Productsearch from "../Productscard/Productsearch";
+import Shoppingcart from "../Shoppingcart/Shoppingcart";
 
 function Navbar () {
+
+    const [search, setSearch] = useState("mens")
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        setSearch(e.target.value)
+    }
+    
+    function handleChange(e) {
+        setSearch(e.target.value)
+    
+    }
     return(
+        <>
         <nav
         className = "flex items-center justify-between flex-wrap bg-white py-4 lg:px-12 shadow border-solid border-t-2 border-blue-700">
         <div className="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 border-solid border-b-2 border-gray-300 pb-5 lg:pb-0">
@@ -26,16 +43,28 @@ function Navbar () {
                 </a>
             </div>
             <div className="relative mx-auto text-gray-600 lg:block hidden">
-                <input
+                <form onSubmit={handleSubmit}>
+                    <input
                     className="border-2 border-gray-300 bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none"
-                    type="search" name="search" placeholder="Search" />
+                    type="search" name="search" placeholder="Search" value = {setSearch} onChange = {handleChange}/>
                 <button type="submit" className="absolute right-0 top-0 mt-3 mr-2">
                 </button>
+                </form>
             </div>
         </div>
     
     </nav>  
+    <div className='my-0 mx-auto'>
+    <Slideshow />
+    
+    <Productsearch onSearch  = {setSearch} query = {search}/>
+  </div>
+  <Shoppingcart />
+  </>
     )
+    console.log(search)
 }
 
 export default Navbar;
+
+
