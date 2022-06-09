@@ -3,13 +3,14 @@ import Slideshow from "../Slideshow/Slideshow";
 import Productsearch from "../Productscard/Productsearch";
 import Shoppingcart from "../Shoppingcart/Shoppingcart";
 
-function Home ({query}) {
+function Home ({data, isLoading, cartItems, onAdd, onRemove}) {
     return(
     <div className='my-0 mx-auto flex flex-col justify-center'>
     <Slideshow />
-    <Productsearch query = {query}/>
-    <Shoppingcart />
-  </div>)
+    <Productsearch data = {data} isLoading = {isLoading} onAdd={onAdd}/>
+    <Shoppingcart onAdd={onAdd} onRemove={onRemove} cartItems = {cartItems}/>
+  </div>
+  )
 }
 
 

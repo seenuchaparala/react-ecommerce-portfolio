@@ -1,5 +1,5 @@
 import React from "react";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Home from "../pages/Home";
 import Men from "../pages/Men";
 import Women from "../pages/Women";
@@ -20,6 +20,56 @@ function Navbar () {
         setSearch(e.target.value)
     
     }
+
+    const [isLoading, setIsLoading] = useState(true)
+    const [data, setData] = useState([])
+    const { products } = data
+    const [cartItems, setCartItems] = useState([])
+
+    function onAdd (product) {
+        const exist = cartItems.find((x) => x.pid === product.pid)
+        if(exist) {
+            setCartItems (
+                cartItems.map((x) => x.pid === product ? { ...exist, qty: exist.qty + 1} : x
+                )
+            )
+        } else {
+            setCartItems([...cartItems, { ...product, qty: 1 }])
+        }
+    }
+
+    function onRemove (product) {
+        const exist = cartItems.find((x) => x.id === product.id);
+        if (exist.qty === 1) {
+          setCartItems(cartItems.filter((x) => x.id !== product.id));
+        } else {
+          setCartItems(
+            cartItems.map((x) =>
+              x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+            )
+          );
+        }
+      };
+    
+
+    useEffect(() => {
+        const options = {
+            method: 'GET',
+            headers: {
+              'X-RapidAPI-Host': 'apidojo-forever21-v1.p.rapidapi.com',
+              'X-RapidAPI-Key': '78bed3a4a8mshbf6e6f99e1ad1a5p14e1ddjsn26dbe05350e0',
+            },
+          };
+          const url = `https://apidojo-forever21-v1.p.rapidapi.com/products/search?query=${search}&rows=4&start=0&color_groups=black`;
+          fetch(url, options)
+            .then((res) => res.json())
+            .then(
+                (result) => {
+                    setIsLoading(false)
+                    setData(result.response.docs)
+        
+                })
+            },[search])
     return(
         <>
         <nav
@@ -32,11 +82,11 @@ function Navbar () {
     
         <div className="menu w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8">
             <div className="text-md font-bold text-blue-700 lg:flex-grow">
-                <Link to="/Men"
+                <Link to="/Men" onClick={() => setSearch("Men")}
                    className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
                     Men
                 </Link>
-                <Link to="/Women"
+                <Link to="/Women" onClick={() => setSearch("Women")}
                    className=" block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
                     Women
                 </Link>
@@ -58,18 +108,11 @@ function Navbar () {
     
     </nav>  
     <Routes>
-        <Route path = "/" element = {<Home query = {search}/>} />
-        <Route path = "/Men" element = {<Men/>} />
-        <Route path = "/Women" element = {<Women />} />
+        <Route path = "/" element = {<Home data = {data} isLoading = {isLoading} cartItems = {cartItems} onAdd={onAdd} onRemove={onRemove}/>} />
+        <Route path = "/Men" element = {<Men data = {data} isLoading = {isLoading} cartItems = {cartItems} onAdd={onAdd} onRemove={onRemove}/>} />
+        <Route path = "/Women" element = {<Women data = {data} isLoading = {isLoading} cartItems = {cartItems} onAdd={onAdd} onRemove={onRemove} />} />
         <Route path = "/Aboutus" element = {<Aboutus/>} />
     </Routes>
-    {/* <div className='my-0 mx-auto'>
-    <Slideshow />
-    
-    <Productsearch onSearch  = {setSearch} query = {search}/>
-    <Shoppingcart />
-  </div> */}
-    
   
   </>
     )

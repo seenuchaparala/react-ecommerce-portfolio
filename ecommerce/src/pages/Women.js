@@ -3,12 +3,12 @@ import Slideshow from "../Slideshow/Slideshow";
 import Productsearch from "../Productscard/Productsearch";
 import Shoppingcart from "../Shoppingcart/Shoppingcart";
 
-function Women ({query}) {
+function Women ({data, isLoading, onAdd, onRemove,cartItems}) {
     return(
     <div className='my-0 mx-auto flex flex-col justify-center'>
     <Slideshow />
-    <Productsearch query = "Women"/>
-    <Shoppingcart />
+    <Productsearch data = {data} isLoading = {isLoading} onAdd={onAdd}/>
+    <Shoppingcart onAdd={onAdd} onRemove={onRemove} cartItems = {cartItems}/>
   </div>)
 }
 

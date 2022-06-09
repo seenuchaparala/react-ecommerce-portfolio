@@ -1,6 +1,8 @@
 import React from "react";
 
-function Productcard ({thumb_image, brand, title, price}) {
+function Productcard ({data, onAdd}) {
+
+  const {thumb_image, brand, title, price} = data
     return (
         
         <div className="bg-white">
@@ -10,7 +12,7 @@ function Productcard ({thumb_image, brand, title, price}) {
             <span class="text-sm">{title}</span>
             <span class="text-m">{price}</span>
           </div>
-          <button className="w-full text-lg h-16 text-white font-extrabold bg-purple-500">Add to Cart</button>
+          <button onClick={() => onAdd(data)} className="w-full text-lg h-16 text-white font-extrabold bg-purple-500">Add to Cart</button>
         </div>
         
 
