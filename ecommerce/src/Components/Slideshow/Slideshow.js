@@ -1,10 +1,7 @@
-// import React, {useState, useEffect} from "react";
-// import img2 from './images/Slideshow2.jpg'
-// import img3 from './images/Slideshow3.jpg'
-import img1 from './images/Slideshow1.jpg'
 
 
-function Slideshow () {
+
+function Slideshow ({image}) {
     // const images = [img1, img2, img3]
     // let [index, setIndex] = useState(0);
     // const displayImage = (images) => { return (
@@ -29,7 +26,7 @@ function Slideshow () {
     // }, [index])
     return (
         <div>
-            <img className = "max-w-6xl" src= {img1} alt ='img1'></img>
+            <img className = "max-w-6xl my-4 object-center" src= {image} alt ='img1'></img>
         </div>
     )
 }

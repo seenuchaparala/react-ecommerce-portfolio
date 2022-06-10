@@ -1,14 +1,22 @@
 import React from "react";
-import img from "../Productscard/ProductImages/Mens_caps.jpg"
+
 
 export default function Shoppingcart ({onAdd, onRemove, cartItems}) {
 
+  
+  const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0)
+  function checkout(cartItems) {
+    return (
+      cartItems.map((item) => item.onRemove)
+    )
+  }
     return(
-        <div className="flex justify-center my-6 mx-0 max-w-2xl bg-transparent">
+        <div className="flex justify-center my-6 mx-0 max-w-2xl bg-sky-500/50 rounded-lg">
           {cartItems.length === 0 && <div></div>}
         {/* <div className="flex flex-col p-8 text-gray-800 bg-white shadow-lg md:w-4/5 lg:w-4/5"> */}
           <div className="flex-1 justify-end w-2/3">
-            <table className="w-full text-sm lg:text-base" cellspacing="0">
+            <h3 className="text-center h-12 uppercase text-xl font-bold">Cart</h3>
+            <table className="w-5/6 mx-4 text-sm lg:text-base" cellSpacing="0">
               <thead>
                 <tr className="h-12 uppercase">
                   <th className="hidden md:table-cell"></th>
@@ -31,7 +39,7 @@ export default function Shoppingcart ({onAdd, onRemove, cartItems}) {
                   </td>
                   <td>
                     <a href="#">
-                      <p className="mb-2 md:ml-4">{item.brand}</p>
+                      <p className="mb-2 md:ml-4 font-bold italic">{item.brand}</p>
                       <form action="" method="POST">
                       </form>
                     </a>
@@ -39,9 +47,9 @@ export default function Shoppingcart ({onAdd, onRemove, cartItems}) {
                   <td className="justify-center md:justify-end md:flex mt-6">
                     <div className="w-20 h-10">
                       <div className="relative flex flex-row w-full h-8">
-                      <button onClick={() => onRemove(item)} className = "text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">-</button>
+                      <button onClick={() => onRemove(item)} className = "text-white bg-red-700 hover:bg-red-800 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700">-</button>
                       
-                      <button onClick={() => onAdd(item)} className = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">+</button>
+                      <button onClick={() => onAdd(item)} className = "text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 ">+</button>
                       </div>
                     </div>
                   </td>
@@ -60,8 +68,10 @@ export default function Shoppingcart ({onAdd, onRemove, cartItems}) {
                 ))}
                 </tbody>
             </table>
-            <button className="flex justify-center max-w-2xl text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 mr-2 mb-2">Buy Now!!</button>
-            {/* </div> */}
+            <div className="grid content-center">
+              <h2 className="text-center my-4 h-12 uppercase text-xl font-bold">Subtotal: ${itemsPrice.toFixed(2)}</h2>
+            <button onClick={checkout(cartItems)} className="text-gray-900 my-5 text-bold bg-[#F7BE38] hover:bg-[#F7BE38]/90 font-medium rounded-lg text-sm px-5 py-2.5 content-center mr-2 mb-2">BUY NOW</button>
+            </div>
             </div>
         </div>
          
