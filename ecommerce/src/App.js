@@ -67,7 +67,7 @@ function App () {
                     setIsLoading(false)
                     setData(result.response.docs)
         
-                })}, 3000)
+                })}, 2000)
 
                 return () => clearTimeout(timer)
             },[search])
