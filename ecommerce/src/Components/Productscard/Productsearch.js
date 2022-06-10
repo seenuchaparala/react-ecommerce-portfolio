@@ -1,5 +1,5 @@
-import React from "react";
-import Productcard from "./Productcard";
+import React from "react"
+import Productcard from "./Productcard"
 
 export default function Productsearch ({data, isLoading, onAdd}) {
     return (

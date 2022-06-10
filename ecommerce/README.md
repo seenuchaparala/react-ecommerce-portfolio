@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+https://seenuchaparala.github.io/react-ecommerce-portfolio/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ 
+The project is intended to serve two purposes:
 
-## Available Scripts
+The first purpose is to meet the conditions set by Academyxi (course provider) to pass the ‘Front End Web Development course.
+The second is to serve as a portfolio project to showcase my coding skills.
 
-In the project directory, you can run:
+About the project:
 
-### `npm start`
+This is a mock eCommerce website that utilizes the Forever21 (clothing store) API. This API wasn’t my first choice. I wanted to obtain an API for a tech vendor to build this website, but due to lack of availability and time constraints, I chose to settle for this API. This website fetches four products and renders them on three different pages. Then there is a shopping cart with the functionality to add/remove products and the total price is displayed at the bottom of the cart.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Tools used:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+React and Tailwind CSS was used to build this website. It has four main components.
 
-### `npm test`
+Header with page hyperlinks and search field.
+Image Slider (Still working on this functionality)
+Product container. Contains 4 product cards. Each product card displays an image, title, price, and ‘add to cart' button
+Shopping cart.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Styling is done mostly using flex classes from Tailwind. A shopping cart was created using a table layout. useEffect hook was used to fetch API data. useState hook was used to store data. Routing was used to navigate between pages.
 
-### `npm run build`
+Challenges faced:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I learned the hard way that data is passed down the components from top to bottom using props. Initially, I had the navigation bar in its own component and tried to pass the search value (state) to the product card component which is on the same level. Realizing the mistake, I moved the code for navigation from the standalone component to the app component so I can pass the search query state to the product component inside the app component.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Improvements:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I’d like to work on the image slider component to display different images after a set interval. I had trouble using the setInterval function inside the useEffect hook. But I’m looking forward to the challenge of figuring it out.
