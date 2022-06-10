@@ -4,62 +4,64 @@ import img from "../Productscard/ProductImages/Mens_caps.jpg"
 export default function Shoppingcart ({onAdd, onRemove, cartItems}) {
 
     return(
-        <div class="flex justify-center my-6 mx-5">
-          {cartItems.length === 0 && <div>Cart is empty</div>}
-        <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
-          <div class="flex-1">
-            <table class="w-full text-sm lg:text-base" cellspacing="0">
+        <div className="flex justify-center my-6 mx-0 max-w-2xl bg-transparent">
+          {cartItems.length === 0 && <div></div>}
+        {/* <div className="flex flex-col p-8 text-gray-800 bg-white shadow-lg md:w-4/5 lg:w-4/5"> */}
+          <div className="flex-1 justify-end w-2/3">
+            <table className="w-full text-sm lg:text-base" cellspacing="0">
               <thead>
-                <tr class="h-12 uppercase">
-                  <th class="hidden md:table-cell"></th>
-                  <th class="text-left">Product</th>
-                  <th class="lg:text-right text-left pl-5 lg:pl-0">
-                    <span class="lg:hidden" title="Quantity">Qtd</span>
-                    <span class="hidden lg:inline">Quantity</span>
+                <tr className="h-12 uppercase">
+                  <th className="hidden md:table-cell"></th>
+                  <th className="text-left">Product</th>
+                  <th className="lg:text-right text-left pl-5 lg:pl-0">
+                    <span className="lg:hidden" title="Quantity">Qtd</span>
+                    <span className="hidden lg:inline">Remove/Add</span>
                   </th>
-                  <th class="hidden text-right md:table-cell">Unit price</th>
-                  <th class="text-right">Total price</th>
+                  <th className="hidden text-right md:table-cell">Unit price</th>
+                  <th className="text-right">Total price</th>
                 </tr>
               </thead>
               <tbody>
                 {cartItems.map((item) =>(
                 <tr key = {item.pid}>
-                  <td class="hidden pb-4 md:table-cell">
+                  <td className="hidden pb-4 md:table-cell">
                     <a href="#">
-                      <img src= {item.thumb_image} class="w-20 rounded" alt="Thumbnail"></img>
+                      <img src= {item.thumb_image} className="w-20 rounded" alt="Thumbnail"></img>
                     </a>
                   </td>
                   <td>
                     <a href="#">
-                      <p class="mb-2 md:ml-4">{item.brand}</p>
+                      <p className="mb-2 md:ml-4">{item.brand}</p>
                       <form action="" method="POST">
                       </form>
                     </a>
                   </td>
-                  <td class="justify-center md:justify-end md:flex mt-6">
-                    <div class="w-20 h-10">
-                      <div class="relative flex flex-row w-full h-8">
-                      <button onClick={() => onRemove(item)}>-</button>
-                      <input type="number" value= {item.qty} 
-                        class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
-                      <button onClick={() => onAdd(item)}>+</button>
+                  <td className="justify-center md:justify-end md:flex mt-6">
+                    <div className="w-20 h-10">
+                      <div className="relative flex flex-row w-full h-8">
+                      <button onClick={() => onRemove(item)} className = "text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">-</button>
+                      
+                      <button onClick={() => onAdd(item)} className = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">+</button>
                       </div>
                     </div>
                   </td>
-                  <td class="hidden text-right md:table-cell">
-                    <span class="text-sm lg:text-base font-medium">
-                      {item.price}
+                  <td className="hidden text-right md:table-cell">
+                    <span className="text-sm lg:text-base font-medium">
+                      ${item.price}
                     </span>
                   </td>
-                  <td class="text-right">
-                    <span class="text-sm lg:text-base font-medium">
-                      {item.qty} x ${item.price.toFixed(2)}
+                  <td className="text-right">
+                    <span className="text-sm lg:text-base font-medium">
+                      ${item.qty * item.price.toFixed(2)}
                     </span>
                   </td>
-                </tr>))}
+                </tr>
+                
+                ))}
                 </tbody>
             </table>
-            </div>
+            <button className="flex justify-center max-w-2xl text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 mr-2 mb-2">Buy Now!!</button>
+            {/* </div> */}
             </div>
         </div>
          

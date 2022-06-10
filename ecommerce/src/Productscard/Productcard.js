@@ -6,13 +6,14 @@ function Productcard ({data, onAdd}) {
     return (
         
         <div className="bg-white">
-          <img src= {thumb_image} alt="" className="w-full sm:h-80 object-cover"></img>
-          <div class="px-10 py-6 mb-10 text-center">
-            <div class="text-2xl font-bold text-purple-500 mb-4">{brand}</div>
-            <span class="text-sm">{title}</span>
-            <span class="text-m">{price}</span>
+          <img src= {thumb_image} alt="" className="w-full sm:h-80 object-contain"></img>
+          <div class="px-10 py-6 text-center">
+            <div class="text-2xl font-bold text-purple-500 mb-4 italic">{brand}</div>
+            <div class="font-serif italic font-bold text-sm truncate text-red-800">{title}</div>
+            <div class="text-m font-serif font-bold my-2 text-blue-800">${price}</div>
           </div>
-          <button onClick={() => onAdd(data)} className="w-full text-lg h-16 text-white font-extrabold bg-purple-500">Add to Cart</button>
+          <button onClick={() => onAdd(data)} className="w-full text-lg h-16 text-white font-extrabold bg-purple-500 rounded-tr-lg rounded-bl-lg">
+            Add to Cart</button>
         </div>
         
 

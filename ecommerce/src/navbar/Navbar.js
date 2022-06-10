@@ -12,25 +12,24 @@ function Navbar () {
     const [search, setSearch] = useState("sale")
 
     function handleSubmit(e) {
-        e.preventDefault();
-        setSearch(e.target.value)
+        e.preventDefault()
+        setSearch(search)
     }
     
     function handleChange(e) {
         setSearch(e.target.value)
-    
     }
 
     const [isLoading, setIsLoading] = useState(true)
     const [data, setData] = useState([])
-    const { products } = data
     const [cartItems, setCartItems] = useState([])
 
     function onAdd (product) {
         const exist = cartItems.find((x) => x.pid === product.pid)
         if(exist) {
             setCartItems (
-                cartItems.map((x) => x.pid === product ? { ...exist, qty: exist.qty + 1} : x
+                cartItems.map((x) => 
+                x.pid === product.pid ? { ...exist, qty: exist.qty + 1} : x
                 )
             )
         } else {
@@ -39,13 +38,13 @@ function Navbar () {
     }
 
     function onRemove (product) {
-        const exist = cartItems.find((x) => x.id === product.id);
+        const exist = cartItems.find((x) => x.pid === product.pid);
         if (exist.qty === 1) {
-          setCartItems(cartItems.filter((x) => x.id !== product.id));
+          setCartItems(cartItems.filter((x) => x.pid !== product.pid));
         } else {
           setCartItems(
             cartItems.map((x) =>
-              x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+              x.pid === product.pid ? { ...exist, qty: exist.qty - 1 } : x
             )
           );
         }
@@ -61,14 +60,16 @@ function Navbar () {
             },
           };
           const url = `https://apidojo-forever21-v1.p.rapidapi.com/products/search?query=${search}&rows=4&start=0&color_groups=black`;
-          fetch(url, options)
+          const timer = setTimeout(() => {fetch(url, options)
             .then((res) => res.json())
             .then(
                 (result) => {
                     setIsLoading(false)
                     setData(result.response.docs)
         
-                })
+                })}, 3000)
+
+                return () => clearTimeout(timer)
             },[search])
     return(
         <>
@@ -76,7 +77,7 @@ function Navbar () {
         className = "flex items-center justify-between flex-wrap bg-white py-4 lg:px-12 shadow border-solid border-t-2 border-blue-700">
         <div className="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 border-solid border-b-2 border-gray-300 pb-5 lg:pb-0">
             <div className="flex items-center flex-shrink-0 text-gray-800 mr-16">
-                <Link to="/" className="font-semibold text-xl tracking-tight">FOREVER21</Link>
+                <Link to="/" onClick={() => setSearch("sale")} className="font-semibold text-xl tracking-tight">FOREVER21</Link>
             </div>
         </div>
     
@@ -95,12 +96,13 @@ function Navbar () {
                     About Us
                 </Link>
             </div>
-            <div className="relative mx-auto text-gray-600 lg:block hidden">
+            <div className="relative mx-auto text-gray-600 lg:flex-grow">
                 <form onSubmit={handleSubmit}>
                     <input
-                    className="border-2 border-gray-300 bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none w-80"
-                    type="search" name="search" placeholder="Search" value = {setSearch} onChange = {handleChange}/>
-                <button type="submit" className="absolute right-0 top-0 mt-3 mr-2">
+                    className="border-2 border-gray-300 bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none w-4/5"
+                    type="text" name="search" placeholder="Enter product" value = {search} onChange = {handleChange}/>
+                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold mx-4 py-2 px-4 rounded">
+                 Search
                 </button>
                 </form>
             </div>
