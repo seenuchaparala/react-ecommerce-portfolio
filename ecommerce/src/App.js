@@ -99,7 +99,7 @@ function App () {
                     <form onSubmit={handleSubmit}>
                         <input
                         className="border-2 border-gray-300 bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none w-4/5"
-                        type="text" name="search" placeholder="Enter product" value = {search} onChange = {handleChange}/>
+                        type="text" name="search" placeholder="Enter product to search" value = {search} onChange = {handleChange}/>
                     </form>
                 </div>
             </div>
