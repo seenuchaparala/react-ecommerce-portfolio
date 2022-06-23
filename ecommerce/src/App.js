@@ -100,9 +100,6 @@ function App () {
                         <input
                         className="border-2 border-gray-300 bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none w-4/5"
                         type="text" name="search" placeholder="Enter product" value = {search} onChange = {handleChange}/>
-                    <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold mx-4 py-2 px-4 rounded">
-                    Search
-                    </button>
                     </form>
                 </div>
             </div>
