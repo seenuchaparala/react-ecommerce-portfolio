@@ -28,4 +28,6 @@ I learned the hard way that data is passed down the components from top to botto
 Improvements:
 
 I’d like to work on the image slider component to display different images after a set interval. I had trouble using the setInterval function inside the useEffect hook. But I’m looking forward to the challenge of figuring it out.
-git
+
+
+![image](https://user-images.githubusercontent.com/22206367/194722149-d66f327d-a9f8-4785-92fc-762e8d3d2930.png)
